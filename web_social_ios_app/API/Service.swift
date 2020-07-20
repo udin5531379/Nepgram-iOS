@@ -30,7 +30,7 @@ class Service: NSObject {
                 completion(.success(users))
             } catch {
                 guard let error = dataResponse.error else { return }
-                
+  
                 completion(.failure(error))
             }
         }

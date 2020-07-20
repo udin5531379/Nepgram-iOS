@@ -15,32 +15,56 @@ class UserProfileCell: LBTAListCell<Post> {
     let postImage = UIImageView(image: nil, contentMode: .scaleAspectFit)
     let postTextLabel = UILabel(text: "postText", font: .systemFont(ofSize: 15))
     let optionsButton = UIButton(image: UIImage(imageLiteralResourceName: "threeDots"), tintColor: .black, target: self, action: #selector(optionsDelButton))
+    let profileImageView = CircularImageView(width: 40, image: #imageLiteral(resourceName: "userprofile"))
+    let likeButton = UIButton(image: #imageLiteral(resourceName: "like"), tintColor: .black, target: self, action: #selector(handleLike))
+    let commentButton = UIButton(image: #imageLiteral(resourceName: "comment"), tintColor: .black, target: self, action: #selector(handleComment))
     
     @objc func optionsDelButton() {
         print("Option button pressed")
     }
     
+    @objc func handleLike(){
+        print("Like Button Pressed")
+    }
+    
+    @objc func handleComment(){
+        print("Comment Button Pressed")
+    }
+    
     override var item: Post! {
            didSet{
-               //First Function to execute in this class after coming from ProfileViewController
+               //First Function to execute in this class
             
-               userName.text = item.user.fullName
-               postImage.sd_setImage(with: URL(string: item.imageUrl))
-               postTextLabel.text = item.text
+                userName.text = item.user.fullName
+                postImage.sd_setImage(with: URL(string: item.imageUrl))
+                postTextLabel.text = item.text
+                profileImageView.sd_setImage(with: URL(string: item.user.profileImageUrl ?? "0"))
+               
            }
        }
     
+    
     override func setupViews() {
+        //this is to render out each cell in the home and profile controller
         super.setupViews()
+        
+        optionsButton.imageView?.contentMode = .scaleAspectFit
+        profileImageView.layer.borderWidth = 1
+        
         
         postImage.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width).isActive = true
         postImage.heightAnchor.constraint(equalToConstant: 300).isActive = true
         
-        stack(hstack(userName,
+        
+        
+        stack(hstack(stack(profileImageView).padRight(10).padBottom(16).padTop(16),
+                     hstack(userName, UIView(), optionsButton.withWidth(25).withHeight(25))).padLeft(10).padRight(10).padTop(10).padBottom(10),
+              postImage,
+              hstack(likeButton.withWidth(30).withHeight(30),
+                     commentButton.withWidth(30).withHeight(30),
                      UIView(),
-            optionsButton.withWidth(30).withHeight(30)).padLeft(10).padRight(10).padTop(16).padBottom(16),
-        postImage,
-        stack(postTextLabel).padLeft(16).padRight(16).padBottom(16).padTop(16))
+                     spacing: 20).padLeft(10).padRight(10).padTop(10),
+              stack(postTextLabel).padLeft(16).padRight(16).padBottom(16).padTop(16))
         
     }
 }
