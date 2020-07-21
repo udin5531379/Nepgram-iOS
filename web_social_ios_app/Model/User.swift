@@ -29,6 +29,7 @@ struct Post: Decodable {
     let text: String
     let user: User
     let imageUrl: String
+    let fromNow: String
     
 }
 
