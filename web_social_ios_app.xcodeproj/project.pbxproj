@@ -20,6 +20,9 @@
 		278DF3BE2485699900B807FE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278DF3BD2485699900B807FE /* User.swift */; };
 		278DF3C62487EBD900B807FE /* UserProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278DF3C52487EBD900B807FE /* UserProfileCell.swift */; };
 		278DF3C8248A7AF600B807FE /* ProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278DF3C7248A7AF600B807FE /* ProfileHeader.swift */; };
+		27B6F76424C893F70063B76C /* PostCommentDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B6F76324C893F60063B76C /* PostCommentDetailsController.swift */; };
+		27B6F76624CAFEA30063B76C /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B6F76524CAFEA30063B76C /* CommentCell.swift */; };
+		27B6F76824CAFED80063B76C /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B6F76724CAFED80063B76C /* Comment.swift */; };
 		27BC0FC8249B18C8008D21D3 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BC0FC7249B18C8008D21D3 /* MainTabBarController.swift */; };
 		27BC0FCA249BA1F3008D21D3 /* EditProfileButtonAndChangeAvatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BC0FC9249BA1F3008D21D3 /* EditProfileButtonAndChangeAvatar.swift */; };
 		27C26433245EEAD000DF7123 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C26432245EEAD000DF7123 /* AppDelegate.swift */; };
@@ -45,6 +48,9 @@
 		278DF3BD2485699900B807FE /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		278DF3C52487EBD900B807FE /* UserProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileCell.swift; sourceTree = "<group>"; };
 		278DF3C7248A7AF600B807FE /* ProfileHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeader.swift; sourceTree = "<group>"; };
+		27B6F76324C893F60063B76C /* PostCommentDetailsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCommentDetailsController.swift; sourceTree = "<group>"; };
+		27B6F76524CAFEA30063B76C /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
+		27B6F76724CAFED80063B76C /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		27BC0FC7249B18C8008D21D3 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		27BC0FC9249BA1F3008D21D3 /* EditProfileButtonAndChangeAvatar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileButtonAndChangeAvatar.swift; sourceTree = "<group>"; };
 		27C2642F245EEAD000DF7123 /* web_social_ios_app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = web_social_ios_app.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -85,6 +91,7 @@
 			isa = PBXGroup;
 			children = (
 				278DF3BD2485699900B807FE /* User.swift */,
+				27B6F76724CAFED80063B76C /* Comment.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -108,6 +115,7 @@
 				2710E85F24659907005480C8 /* PostCell.swift */,
 				278DF3B5247D78A200B807FE /* UserSearchCell.swift */,
 				278DF3C52487EBD900B807FE /* UserProfileCell.swift */,
+				27B6F76524CAFEA30063B76C /* CommentCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -128,6 +136,14 @@
 				27BC0FC9249BA1F3008D21D3 /* EditProfileButtonAndChangeAvatar.swift */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		27B6F76224C893BA0063B76C /* CommentDetails */ = {
+			isa = PBXGroup;
+			children = (
+				27B6F76324C893F60063B76C /* PostCommentDetailsController.swift */,
+			);
+			path = CommentDetails;
 			sourceTree = "<group>";
 		};
 		27C26426245EEAD000DF7123 = {
@@ -151,6 +167,7 @@
 		27C26431245EEAD000DF7123 /* web_social_ios_app */ = {
 			isa = PBXGroup;
 			children = (
+				27B6F76224C893BA0063B76C /* CommentDetails */,
 				278DF3BA2483F65000B807FE /* Profile */,
 				278DF3B7247EACDF00B807FE /* API */,
 				2710E85E246598C6005480C8 /* Cell */,
@@ -301,6 +318,7 @@
 			files = (
 				278DF3BC2483F68A00B807FE /* ProfileViewForUsersInSearchController.swift in Sources */,
 				278DF3C62487EBD900B807FE /* UserProfileCell.swift in Sources */,
+				27B6F76424C893F70063B76C /* PostCommentDetailsController.swift in Sources */,
 				278DF3B4247D734900B807FE /* UserSearchController.swift in Sources */,
 				278DF3B9247EACF200B807FE /* Service.swift in Sources */,
 				27BC0FCA249BA1F3008D21D3 /* EditProfileButtonAndChangeAvatar.swift in Sources */,
@@ -308,11 +326,13 @@
 				2710E85224613CA0005480C8 /* LoginController.swift in Sources */,
 				278DF3B6247D78A200B807FE /* UserSearchCell.swift in Sources */,
 				2710E8672466801A005480C8 /* UploadProgress.swift in Sources */,
+				27B6F76824CAFED80063B76C /* Comment.swift in Sources */,
 				278DF3C8248A7AF600B807FE /* ProfileHeader.swift in Sources */,
 				278DF3BE2485699900B807FE /* User.swift in Sources */,
 				2710E8592462DE73005480C8 /* RegisterController.swift in Sources */,
 				27C26435245EEAD000DF7123 /* SceneDelegate.swift in Sources */,
 				2710E8642465BF09005480C8 /* CreatePostController.swift in Sources */,
+				27B6F76624CAFEA30063B76C /* CommentCell.swift in Sources */,
 				27C26447245FC9A300DF7123 /* HomeController.swift in Sources */,
 				2710E8552461727A005480C8 /* ButtonAnimate.swift in Sources */,
 				2710E86024659907005480C8 /* PostCell.swift in Sources */,

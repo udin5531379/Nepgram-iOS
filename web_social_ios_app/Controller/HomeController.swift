@@ -35,7 +35,11 @@ class HomeController: LBTAListController<UserProfileCell, Post>, UINavigationCon
         
         
      }
-
+    
+    func handleShowPostDetailsAndComment(post: Post) {
+        let postViewController = PostCommentDetailsController(postId: post.id)
+        navigationController?.pushViewController(postViewController, animated: true)
+    }
     
     @objc func handleSearch(){
         let navC = UINavigationController(rootViewController: UserSearchController())

@@ -16,20 +16,20 @@ class UserProfileCell: LBTAListCell<Post> {
     let postTextLabel = UILabel(text: "postText", font: .systemFont(ofSize: 15))
     let optionsButton = UIButton(image: UIImage(imageLiteralResourceName: "threeDots"), tintColor: .black, target: self, action: #selector(optionsDelButton))
     let profileImageView = CircularImageView(width: 40, image: #imageLiteral(resourceName: "userprofile"))
-    let likeButton = UIButton(image: #imageLiteral(resourceName: "like"), tintColor: .black, target: self, action: #selector(handleLike))
-    let commentButton = UIButton(image: #imageLiteral(resourceName: "comment"), tintColor: .black, target: self, action: #selector(handleComment))
+    let likeButton = UIImageView(image: #imageLiteral(resourceName: "like"), contentMode: .scaleAspectFit)
+    let commentButton = UIImageView(image: #imageLiteral(resourceName: "comment"), contentMode: .scaleAspectFit)
     let postedTimeStamp = UILabel(text: "", font: .systemFont(ofSize: 15), textColor: .lightGray)
     
     @objc func optionsDelButton() {
         print("Option button pressed")
     }
     
-    @objc func handleLike(){
-        print("Like Button Pressed")
+    @objc func handleLike() {
+        print("Like button Pressed")
     }
     
-    @objc func handleComment(){
-        print("Comment Button Pressed")
+    @objc func handleComment() {
+        (parentController as? HomeController)?.handleShowPostDetailsAndComment(post: self.item)
     }
     
     override var item: Post! {
@@ -45,14 +45,31 @@ class UserProfileCell: LBTAListCell<Post> {
            }
        }
     
+//    var imageheightAnchor: NSLayoutConstraint!
+//    
+//    override func layoutSubviews() {
+//        super.layoutSubviews()
+//        imageheightAnchor.constant = frame.width
+//    }
+    
     
     override func setupViews() {
         //this is to render out each cell in the home and profile controller
         super.setupViews()
         
+        likeButton.isUserInteractionEnabled = true
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleLike))
+        likeButton.addGestureRecognizer(tapGestureRecognizer)
+        
+        commentButton.isUserInteractionEnabled = true
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleComment))
+        commentButton.addGestureRecognizer(tapGesture)
+        
         optionsButton.imageView?.contentMode = .scaleAspectFit
         profileImageView.layer.borderWidth = 1
         
+//        imageheightAnchor = postImage.heightAnchor.constraint(equalToConstant: 0)
+//        imageheightAnchor.isActive = true
         
         postImage.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width).isActive = true
         postImage.heightAnchor.constraint(equalToConstant: 300).isActive = true
@@ -60,13 +77,15 @@ class UserProfileCell: LBTAListCell<Post> {
         
         
         stack(hstack(stack(profileImageView).padRight(10).padBottom(16).padTop(16),
-                     hstack(stack(userName, stack(postedTimeStamp.withHeight(10).withWidth(200)).padTop(-50).padBottom(2)).padTop(-20), UIView(), optionsButton.withWidth(25).withHeight(25))).padLeft(10).padRight(10).padTop(10).padBottom(5),
+                     hstack(stack(userName, stack(postedTimeStamp.withWidth(200)).padTop(-50).padBottom(2)).padTop(-20), UIView(), optionsButton.withWidth(25).withHeight(25))).padLeft(10).padRight(10).padTop(10).padBottom(5),
               postImage,
               hstack(likeButton.withWidth(30).withHeight(30),
                      commentButton.withWidth(30).withHeight(30),
                      UIView(),
                      spacing: 20).padLeft(10).padRight(10).padTop(10),
               stack(postTextLabel).padLeft(16).padRight(16).padBottom(16).padTop(16))
+        
+        
         
     }
 }

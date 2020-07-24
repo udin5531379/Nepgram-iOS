@@ -30,6 +30,7 @@ struct Post: Decodable {
     let user: User
     let imageUrl: String
     let fromNow: String
+    let comments: [Comment]? //optional because it can or cannot contain comment
     
 }
 
