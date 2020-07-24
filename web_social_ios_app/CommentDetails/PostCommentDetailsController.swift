@@ -21,13 +21,18 @@ class PostCommentDetailsController: LBTAListController<CommmentCell, Comment> { 
         super.init()
     }
     
+    var post: Post?
    
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchCommentsData()
-    }
+        navigationItem.title = "Comments"
+   }
+    
+    
     
     let hud = JGProgressHUD()
+    
     
     
     func fetchCommentsData() {
@@ -54,6 +59,14 @@ class PostCommentDetailsController: LBTAListController<CommmentCell, Comment> { 
                     let posts = try JSONDecoder().decode(Post.self, from: data)
                     print(posts)
                     self.items = posts.comments ?? []
+                        if self.items.count == 0 {
+                            print("no comments ")
+                            let alert = UIAlertController(title: "No comments on this post", message: "", preferredStyle: .alert)
+                            alert.addAction(UIAlertAction(title: "Go back", style: .default, handler: { (action) in
+                                self.navigationController?.popToRootViewController(animated: true)
+                            }))
+                            self.present(alert, animated: true)
+                        }
                     self.collectionView.reloadData()
                     self.hud.dismiss()
                 } catch {
@@ -68,3 +81,18 @@ class PostCommentDetailsController: LBTAListController<CommmentCell, Comment> { 
        }
        
 }
+
+extension PostCommentDetailsController: UICollectionViewDelegateFlowLayout {
+    
+    //this is height for each of the cell in the HomeController
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+         let width = view.frame.width
+         let height = estimatedCellHeight(for: indexPath, cellWidth: width)
+         return .init(width: width, height: height)
+     }
+}
+
+//if self.i == nil {
+//
+//
+//                   }
