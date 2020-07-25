@@ -9,6 +9,10 @@
 import Foundation
 import LBTATools
 
+protocol PostDelegate {
+    func handleComments(post: Post)
+}
+
 //this UserProfileCell is brong presented in both HomeContoller and ProfileViewController
 class UserProfileCell: LBTAListCell<Post> {
     let userName = UILabel(text: "Name", font: .boldSystemFont(ofSize: 17))
@@ -29,7 +33,10 @@ class UserProfileCell: LBTAListCell<Post> {
     }
     
     @objc func handleComment() {
-        (parentController as? HomeController)?.handleShowPostDetailsAndComment(post: self.item)
+        
+        //Protocol function now executes in two places which is Home and ProfileView Controller. Parentcontroller is dynamic becaseu if we are in Home Controller then parentController is the HomeController and if we are in ProfileViewController then the parent is ProfileViewController.
+        
+        (parentController as? PostDelegate)?.handleComments(post: item)
     }
     
     override var item: Post! {

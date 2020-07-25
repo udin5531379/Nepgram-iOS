@@ -13,7 +13,15 @@ import Alamofire
 
 //in this class LBTAListController uses two generics, one is Cells and another is post objects, or whatever your are trying to render out in the cells
 
-class ProfileViewForUsersInSearchController: LBTAListHeaderController<UserProfileCell, Post, ProfileHeader>, UICollectionViewDelegateFlowLayout {
+class ProfileViewForUsersInSearchController: LBTAListHeaderController<UserProfileCell, Post, ProfileHeader>, UICollectionViewDelegateFlowLayout, PostDelegate {
+    
+    
+    func handleComments(post: Post) {
+        
+        let postViewController = PostCommentDetailsController(postId: post.id)
+        navigationController?.pushViewController(postViewController, animated: true)
+    }
+    
     
     override func setupHeader(_ header: ProfileHeader) {
         super.setupHeader(header)
@@ -69,6 +77,9 @@ class ProfileViewForUsersInSearchController: LBTAListHeaderController<UserProfil
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.title = "Profile"
         
         fetchUserProfile()
         setupActivityIndicator()

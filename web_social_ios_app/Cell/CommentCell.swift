@@ -36,7 +36,7 @@ class CommmentCell : LBTAListCell<Comment> {
         //each cell kasari render out garney part
         stack(hstack(profileImageView,
                      stack(commentedUsersNameLabel,commentedTimeLabel), spacing: 10).padBottom(10),
-            commentTextLabel).padTop(10).padRight(10).padLeft(10).padBottom(10)
+              stack(commentTextLabel).padRight(5).padLeft(5)).padTop(10).padRight(10).padLeft(10).padBottom(10)
         
        }
        

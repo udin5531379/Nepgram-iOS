@@ -13,6 +13,7 @@ import LBTATools
 class UserSearchController: LBTAListController<UserSearchCell, User> {
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.title = "Search"
         
         Service.shared.searchForUsers { (res) in

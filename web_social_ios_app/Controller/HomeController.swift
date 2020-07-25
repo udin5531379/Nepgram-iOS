@@ -13,12 +13,23 @@ import Alamofire
 import JGProgressHUD
 import SDWebImage
 
-class HomeController: LBTAListController<UserProfileCell, Post>, UINavigationControllerDelegate, UIImagePickerControllerDelegate{
+
+class HomeController: LBTAListController<UserProfileCell, Post>, UINavigationControllerDelegate, UIImagePickerControllerDelegate, PostDelegate{
+    
+    //Delegate Function to show comments on both the HomeControllerView and ProfileControllerView
+    func handleComments(post: Post) {
+        let postViewController = PostCommentDetailsController(postId: post.id)
+        navigationController?.pushViewController(postViewController, animated: true)
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         fetchData()
+        
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.title = "Home"
         
         let searchButton = UIButton(image: #imageLiteral(resourceName: "search"), tintColor: .black, target: self, action: #selector(handleSearch))
         let barButton = UIBarButtonItem(customView: searchButton)
@@ -36,10 +47,6 @@ class HomeController: LBTAListController<UserProfileCell, Post>, UINavigationCon
         
      }
     
-    func handleShowPostDetailsAndComment(post: Post) {
-        let postViewController = PostCommentDetailsController(postId: post.id)
-        navigationController?.pushViewController(postViewController, animated: true)
-    }
     
     @objc func handleSearch(){
         let navC = UINavigationController(rootViewController: UserSearchController())
@@ -283,5 +290,8 @@ extension HomeController: UICollectionViewDelegateFlowLayout {
         let height = estimatedCellHeight(for: indexPath, cellWidth: width)
         return .init(width: width, height: height)
     }
+    
+//Delegate
+
 
 }

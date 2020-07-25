@@ -61,7 +61,7 @@ class PostCommentDetailsController: LBTAListController<CommmentCell, Comment> { 
                     self.items = posts.comments ?? []
                         if self.items.count == 0 {
                             print("no comments ")
-                            let alert = UIAlertController(title: "No comments on this post", message: "", preferredStyle: .alert)
+                            let alert = UIAlertController(title: "Sorry, no comments on this post.", message: "", preferredStyle: .alert)
                             alert.addAction(UIAlertAction(title: "Go back", style: .default, handler: { (action) in
                                 self.navigationController?.popToRootViewController(animated: true)
                             }))
