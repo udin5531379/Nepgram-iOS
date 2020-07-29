@@ -16,24 +16,76 @@ class PostCommentDetailsController: LBTAListController<CommmentCell, Comment> { 
     
     var postId : String
     
+    
     init(postId: String) {
         self.postId = postId
         super.init()
     }
     
+    lazy var customInputView: CustomInputAccessoryView = {
+        let civ = CustomInputAccessoryView(frame: .init(x: 0, y: 0, width: view.frame.width, height: 50))
+        civ.sendButton.addTarget(self, action: #selector(handleSend), for: .touchUpInside)
+        civ.backgroundColor = .white
+        return civ
+    }()
+    
+    
+    @objc func handleSend(){
+        
+        print(customInputView.textView.text ?? "")
+        
+            let hud = JGProgressHUD(style: .dark)
+            hud.textLabel.text = "Submitting..."
+            hud.show(in: view)
+
+            let params : [String : String] = ["text" : customInputView.textView.text]
+            let url = "\(Service.shared.baseUrl)/post/comment/\(postId)"
+        
+            AF.request(url, method: .post, parameters: params)
+                .validate(statusCode: 200..<300)
+                .responseString { (dataResponse) in
+
+                    if let err = dataResponse.error {
+                        hud.dismiss()
+                        print("error", err)
+                        print(params)
+                    } else {
+                        print("Success")
+                        hud.dismiss()
+                        self.customInputView.textView.text = nil
+                        self.fetchCommentsData()
+                    }
+
+
+
+            }
+   }
+    
+    //these two override is used to keep customView on top of the keyboard
+    override var inputAccessoryView: UIView? {
+        get {
+            return customInputView
+        }
+    }
+    
+    override var canBecomeFirstResponder: Bool {
+        return true
+    }
+    
     var post: Post?
-   
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchCommentsData()
         navigationItem.title = "Comments"
+        
+        //to dismiss the keyboard when swiping down
+        collectionView.keyboardDismissMode = .interactive
    }
     
     
     
     let hud = JGProgressHUD()
-    
-    
     
     func fetchCommentsData() {
         //for progress hud
@@ -92,7 +144,3 @@ extension PostCommentDetailsController: UICollectionViewDelegateFlowLayout {
      }
 }
 
-//if self.i == nil {
-//
-//
-//                   }

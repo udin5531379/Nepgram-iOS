@@ -94,7 +94,7 @@ class  CreatePostContoller: UIViewController, UITextViewDelegate{
                             case .success(let sucess):
                                 
                                 self.dismiss(animated: true) {
-//                                    self.homeController?.fetchData()
+                                    //self.homeController?.fetchData()
                                     self.refreshHomeController()
                                     
                                 } 

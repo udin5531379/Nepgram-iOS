@@ -23,6 +23,7 @@
 		27B6F76424C893F70063B76C /* PostCommentDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B6F76324C893F60063B76C /* PostCommentDetailsController.swift */; };
 		27B6F76624CAFEA30063B76C /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B6F76524CAFEA30063B76C /* CommentCell.swift */; };
 		27B6F76824CAFED80063B76C /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B6F76724CAFED80063B76C /* Comment.swift */; };
+		27B6F76B24CD315C0063B76C /* CustomInputAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B6F76A24CD315C0063B76C /* CustomInputAccessoryView.swift */; };
 		27BC0FC8249B18C8008D21D3 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BC0FC7249B18C8008D21D3 /* MainTabBarController.swift */; };
 		27BC0FCA249BA1F3008D21D3 /* EditProfileButtonAndChangeAvatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BC0FC9249BA1F3008D21D3 /* EditProfileButtonAndChangeAvatar.swift */; };
 		27C26433245EEAD000DF7123 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C26432245EEAD000DF7123 /* AppDelegate.swift */; };
@@ -51,6 +52,7 @@
 		27B6F76324C893F60063B76C /* PostCommentDetailsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCommentDetailsController.swift; sourceTree = "<group>"; };
 		27B6F76524CAFEA30063B76C /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
 		27B6F76724CAFED80063B76C /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		27B6F76A24CD315C0063B76C /* CustomInputAccessoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInputAccessoryView.swift; sourceTree = "<group>"; };
 		27BC0FC7249B18C8008D21D3 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		27BC0FC9249BA1F3008D21D3 /* EditProfileButtonAndChangeAvatar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileButtonAndChangeAvatar.swift; sourceTree = "<group>"; };
 		27C2642F245EEAD000DF7123 /* web_social_ios_app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = web_social_ios_app.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -146,6 +148,14 @@
 			path = CommentDetails;
 			sourceTree = "<group>";
 		};
+		27B6F76924CD311E0063B76C /* CustomInputView */ = {
+			isa = PBXGroup;
+			children = (
+				27B6F76A24CD315C0063B76C /* CustomInputAccessoryView.swift */,
+			);
+			path = CustomInputView;
+			sourceTree = "<group>";
+		};
 		27C26426245EEAD000DF7123 = {
 			isa = PBXGroup;
 			children = (
@@ -167,6 +177,7 @@
 		27C26431245EEAD000DF7123 /* web_social_ios_app */ = {
 			isa = PBXGroup;
 			children = (
+				27B6F76924CD311E0063B76C /* CustomInputView */,
 				27B6F76224C893BA0063B76C /* CommentDetails */,
 				278DF3BA2483F65000B807FE /* Profile */,
 				278DF3B7247EACDF00B807FE /* API */,
@@ -319,6 +330,7 @@
 				278DF3BC2483F68A00B807FE /* ProfileViewForUsersInSearchController.swift in Sources */,
 				278DF3C62487EBD900B807FE /* UserProfileCell.swift in Sources */,
 				27B6F76424C893F70063B76C /* PostCommentDetailsController.swift in Sources */,
+				27B6F76B24CD315C0063B76C /* CustomInputAccessoryView.swift in Sources */,
 				278DF3B4247D734900B807FE /* UserSearchController.swift in Sources */,
 				278DF3B9247EACF200B807FE /* Service.swift in Sources */,
 				27BC0FCA249BA1F3008D21D3 /* EditProfileButtonAndChangeAvatar.swift in Sources */,

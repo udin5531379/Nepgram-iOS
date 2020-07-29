@@ -10,7 +10,6 @@ import Foundation
 
 struct Comment: Decodable{
    
-    
     let text: String
     let user: User
     let fromNow: String
