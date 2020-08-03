@@ -15,6 +15,24 @@ import Alamofire
 
 class ProfileViewForUsersInSearchController: LBTAListHeaderController<UserProfileCell, Post, ProfileHeader>, UICollectionViewDelegateFlowLayout, PostDelegate {
     
+    func handleLike(post: Post) {
+        print("ProfileController Like")
+        let state = post.hasLiked == true
+        let string = state ? "dislike" : "like"
+        let url = "\(Service.shared.baseUrl)/\(string)/\(post.id)"
+        AF.request(url, method: .post)
+            .validate(statusCode: 200..<300)
+            .responseJSON { (dataResponse) in
+                
+                guard let indexOfPost = self.items.firstIndex(where: {$0.id == post.id}) else { return }
+                self.items[indexOfPost].hasLiked?.toggle() //flip the boolean value according to users like and dislike
+                let indexPath = IndexPath(item: indexOfPost, section: 0)
+                self.collectionView.reloadItems(at: [indexPath])
+                
+        }
+    }
+    
+    
     
     func handleComments(post: Post) {
         

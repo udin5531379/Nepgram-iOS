@@ -16,6 +16,22 @@ import SDWebImage
 
 class HomeController: LBTAListController<UserProfileCell, Post>, UINavigationControllerDelegate, UIImagePickerControllerDelegate, PostDelegate{
     
+    func handleLike(post: Post) {
+        print("HomeController Like")
+        guard let indexOfPost = self.items.firstIndex(where: {$0.id == post.id}) else { return }
+        self.items[indexOfPost].hasLiked?.toggle() //flip the boolean value according to users like and dislike
+        let state = post.hasLiked == true
+        let string = state ? "dislike" : "like"
+        let url = "\(Service.shared.baseUrl)/\(string)/\(post.id)"
+        AF.request(url, method: .post)
+            .validate(statusCode: 200..<300)
+            .responseJSON { (dataResponse) in
+                let indexPath = IndexPath(item: indexOfPost, section: 0)
+                self.collectionView.reloadItems(at: [indexPath])
+         }
+    }
+    
+    
     //Delegate Function to show comments on both the HomeControllerView and ProfileControllerView
     func handleComments(post: Post) {
         let postViewController = PostCommentDetailsController(postId: post.id)

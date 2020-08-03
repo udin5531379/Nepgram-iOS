@@ -32,6 +32,7 @@ struct Post: Decodable {
     let fromNow: String
     let comments: [Comment]? //optional because it can or cannot contain comment
     
+    var hasLiked: Bool?
 }
 
 
